@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>💰 Expense Tracker</h1>
+        <form action="/add" method="post">
+            <input type="text" name="title" placeholder="Expense title" required>
+            <input type="number" name="amount" placeholder="Amount" required>
+            <input type="date" name="date" placeholder="date" required>
+            <select name="category">
+                <option value="Food">Food</option>
+                <option value="Travel">Travel</option>
+                <option value="Shopping">Shopping</option>
+                <option value="entertainment">entertainment</option>
+            </select>
+            <button type="submit">Add Expense</button>
+        </form>
+
+        <h2>📅 Monthly Expense Summary</h2>
+        <div class="chart-container">
+            <canvas id="expensechart"></canvas>
+        </div>
+
+        <h2>📝 Expense List</h2>
+        <div class="expense-list">
+            <% expenses.forEach(expense => { %>
+                <div class="expense-item">
+                    <strong><%= expense.title %></strong> - ₹<%= expense.amount %>
+                    (<%= expense.category %>) on <%= expense.date %>
+            <% }); %>
+        </div>
+    </div>
+    
+    <script src="/script.js"></script>
+</body>
+</html>
